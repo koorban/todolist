@@ -1,0 +1,32 @@
+.is-done {
+  text-decoration: line-through;
+}
+h1 {
+  text-align: center;
+}
+
+header {
+  background-color: slategrey;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.todos {
+  margin-bottom: 5em;
+  background-color: red
+}
+
+.count-flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-count-style {
+  font-size: 22px;
+  margin-left: 2em;
+  border-style: solid;
+  border-radius: 0.2em;
+  padding: 0.08em;
+  border-width: 2px;
+}
