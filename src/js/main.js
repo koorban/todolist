@@ -60,8 +60,7 @@ function patinAll() {
 
 function paintTodoList() {
   const todoList = getTodoList();
-  count = todoList.length;
-  countTodo.innerHTML = count;
+  countTodo.innerHTML = todoList.length;
   paintList(todoList, listContainer);
 }
 
@@ -71,10 +70,8 @@ function getTodoList() {
 
 function paintDoneList() {
   const doneList = getDoneList();
-  const countDone = doneList.length;
-
   paintList(doneList, listDoneContainer);
-  countTodoDone.innerHTML = countDone;
+  countTodoDone.innerHTML = doneList.length;
 }
 
 function getDoneList() {
