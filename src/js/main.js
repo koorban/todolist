@@ -2,38 +2,97 @@ let list = [
   {
     id: 1,
     name: "Replicar el eje del profe",
-    done: true,
+    done: false,
   },
   {
-    id: 1,
+    id: 2,
     name: "Replicar el eje del profe 2",
     done: true,
   },
   {
-    id: 1,
+    id: 3,
     name: "Replicar el eje del profe 3",
     done: false,
   },
   {
-    id: 1,
+    id: 4,
     name: "Replicar el eje del profe 4",
+    done: false,
+  },
+  {
+    id: 5,
+    name: "XXXX",
     done: false,
   },
 ];
 
-const listContainer = document.querySelector("#list-content");
+const listContainer = document.querySelector("#list-todo");
+const listDoneContainer = document.querySelector("#list-done");
 
-paintList(list);
+const countTodo = document.querySelector('#todo-count');
+const countTodoDone = document.querySelector('#todo-count-done');
 
-function paintList(lst) {
+patinAll();
+
+function createTask(task) {
+  const input = document.querySelector("#inputTask");
+  list.push({
+    id: list.length + 1,
+    name: input.value,
+    done: false,
+  });
+  input.value = "";
+  patinAll();
+}
+
+const checkTask = (checkbox, id) => {
+  const task = list.find((element) => {
+    return element.id === id;
+  });
+  task.done = checkbox.checked;
+  patinAll();
+};
+
+function patinAll() {
+  paintTodoList();
+  paintDoneList();
+}
+
+function paintTodoList() {
+  const todoList = getTodoList();
+  count = todoList.length;
+  countTodo.innerHTML = count;
+  paintList(todoList, listContainer);
+}
+
+function getTodoList() {
+  return list.filter((task) => !task.done);
+}
+
+function paintDoneList() {
+  const doneList = getDoneList();
+  const countDone = doneList.length;
+
+  paintList(doneList, listDoneContainer);
+  countTodoDone.innerHTML = countDone;
+}
+
+function getDoneList() {
+  return list.filter((task) => task.done);
+}
+
+function paintList(lst, domList) {
   let res = "";
   lst.forEach((element) => {
     res += renderListItem(element);
   });
-  listContainer.innerHTML = res;
+  domList.innerHTML = res;
 }
 
 function renderListItem(item) {
-  const isDone = item.done ? "isDone" : "";
-  return `<li class="list-group-item list-item ${isDone}">${item.name}</li>`;
+  const isDone = item.done ? "is-done" : "";
+  const checked = item.done ? "checked" : "";
+  return `<li class="list-group-item list-item ${isDone}">
+              <input type="checkbox" ${checked} aria-label="Checkbox for following text input" onclick="checkTask(this, ${item.id})"> ${item.name}
+          </li>`;
 }

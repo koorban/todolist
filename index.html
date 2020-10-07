@@ -17,8 +17,34 @@
   <body>
     <div class="container">
       <h1>What do I need to do today</h1>
-      <div>
-        <ul class="list-group mylist" id="list-content"></ul>
+
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Put your new task name heare"
+          id="inputTask"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button" onclick="createTask()">
+            Create
+          </button>
+        </div>
+      </div>
+
+      <div class="todolist row">
+        <div class="col">
+          <div>
+            <span id="todo-count"></span>
+            <h2>Todo</h2>
+          </div>
+          <ul class="list-group mylist" id="list-todo"></ul>
+        </div>
+        <div class="col">
+          <div id="todo-count-done"></div>
+          <h2>Done</h2>
+          <ul class="list-group mylist" id="list-done"></ul>
+        </div>
       </div>
     </div>
   </body>
